@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tlapalería Esmeralda — Todo para tu proyecto, a un clic de distancia</title>
+  <meta name="description"
+    content="Tlapalería Esmeralda en Los Reyes La Paz: herramientas profesionales, materiales de construcción, fontanería y electricidad. Catálogo en línea con los mejores precios." />
+  <meta name="keywords" content="tlapaleria, herramientas, Los Reyes La Paz, construccion, materiales, Esmeralda" />
+  <!-- Favicon generado con SVG -->
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%232563eb'/><path d='M25 72V42l25-16 25 16v30H55V55H45v17H25Z' fill='white'/></svg>" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar" id="navbar">
+    <a class="nav-brand" href="#inicio">
+      <!--
+        LOGO: coloca tu archivo de logo con el nombre "logo.png" en la carpeta raíz
+        del proyecto. Si el archivo no existe, se mostrará el ícono de respaldo.
+      -->
+      <img class="brand-logo" src="logo.png" alt="Logotipo Tlapalería Esmeralda"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+
+      Tlapalería <span>Esmeralda</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#inicio" class="active">Inicio</a></li>
+      <li><a href="#catalogo">Catálogo</a></li>
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <button class="btn-cart" id="btn-cart" aria-label="Abrir carrito">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="9" cy="21" r="1" />
+          <circle cx="20" cy="21" r="1" />
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+        </svg>
+        Carrito
+        <span class="cart-badge" id="cart-badge">0</span>
+      </button>
+      <!-- Botón Admin — oculto en navbar, visible solo en el footer -->
+      <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile nav -->
+  <div class="nav-menu-mobile" id="mobile-menu">
+    <a href="#inicio">Inicio</a>
+    <a href="#catalogo">Catálogo</a>
+    <a href="#nosotros">Nosotros</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero" id="inicio">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <div class="hero-tag">
+        <svg viewBox="0 0 24 24">
+          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+        </svg>
+        Herramientas Profesionales &middot; Los Reyes La Paz
+      </div>
+      <h1>Todo para tu proyecto,<br><span class="highlight">a un clic de distancia.</span></h1>
+      <p>Encuentra desde tornillos hasta rotomartillos con la mejor calidad y precio garantizado en Los Reyes La Paz.
+      </p>
+
+      <div class="search-wrapper">
+        <input type="search" class="search-bar" id="search-input" placeholder="Busca herramientas, materiales, marcas…"
+          autocomplete="off" aria-label="Búsqueda de productos" />
+        <span class="search-icon-svg">
+          <svg viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+        </span>
+        <div class="autocomplete-list" id="autocomplete-list"></div>
+      </div>
+    </div>
+
+    <div class="hero-scroll-hint">
+      <svg viewBox="0 0 24 24">
+        <polyline points="6 9 12 15 18 9" />
+      </svg>
+      <span>Explorar catálogo</span>
+    </div>
+  </section>
+
+  <!-- ========== CATÁLOGO ========== -->
+  <section id="catalogo">
+    <div class="section-header">
+      <div>
+        <h2 class="section-title">Nuestro <span>Catálogo</span></h2>
+        <p class="section-sub">Herramientas y materiales de las mejores marcas del mercado</p>
+      </div>
+    </div>
+
+    <div class="catalog-layout">
+
+      <!-- Sidebar de filtros -->
+      <aside class="filters-sidebar" id="filters-sidebar">
+        <div class="filter-header">
+          <h3>
+            <svg viewBox="0 0 24 24">
+              <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
+            </svg>
+            Filtros
+          </h3>
+          <button class="btn-reset" id="btn-reset-filters">Limpiar</button>
+        </div>
+
+        <div class="filter-group">
+          <label for="filter-categoria">Categoría</label>
+          <select id="filter-categoria">
+            <option value="todos">Todas las categorías</option>
+            <option value="construccion">Construcción</option>
+            <option value="electricidad">Electricidad</option>
+            <option value="fontaneria">Fontanería</option>
+            <option value="otros">Otros</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="filter-marca">Marca</label>
+          <select id="filter-marca">
+            <option value="todas">Todas las marcas</option>
+            <option value="Bosch">Bosch</option>
+            <option value="Dewalt">Dewalt</option>
+            <option value="Milwaukee">Milwaukee</option>
+            <option value="Stanley">Stanley</option>
+            <option value="Truper">Truper</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label>Precio máx.: <span id="filter-precio-val">$5,000</span></label>
+          <div class="price-range-wrapper">
+            <input type="range" id="filter-precio" min="0" max="5000" step="50" value="5000" />
+          </div>
+        </div>
+      </aside>
+
+      <!-- Grid de productos -->
+      <div class="products-grid" id="products-grid">
+        <!-- Renderizado por JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== NOSOTROS ========== -->
+  <section id="nosotros">
+    <div class="section-header">
+      <div>
+        <h2 class="section-title">¿Por qué elegir <span>Esmeralda</span>?</h2>
+        <p class="section-sub">Más de 20 años sirviendo a los profesionales y constructores de Los Reyes La Paz</p>
+      </div>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24">
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+          </svg>
+        </div>
+        <h3>Calidad Garantizada</h3>
+        <p>Trabajamos solo con proveedores certificados y marcas líderes a nivel internacional.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24">
+            <rect x="1" y="3" width="15" height="13" />
+            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
+            <circle cx="5.5" cy="18.5" r="2.5" />
+            <circle cx="18.5" cy="18.5" r="2.5" />
+          </svg>
+        </div>
+        <h3>Entrega Rápida</h3>
+        <p>Servicio de entrega a domicilio en Los Reyes La Paz y municipios cercanos en menos de 24 horas.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24">
+            <line x1="12" y1="1" x2="12" y2="23" />
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+          </svg>
+        </div>
+        <h3>Mejor Precio</h3>
+        <p>Igualamos cualquier precio de la competencia en la región. Tu confianza es nuestra prioridad.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+            <line x1="12" y1="22.08" x2="12" y2="12" />
+          </svg>
+        </div>
+        <h3>Asesoría Experta</h3>
+        <p>Nuestro equipo técnico te orienta para elegir la herramienta perfecta para tu proyecto.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONTACTO / MAPA ========== -->
+  <section id="contacto">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h2>Visítanos en <span>Los Reyes La Paz</span></h2>
+        <p>
+          Estamos ubicados en el corazón de Los Reyes La Paz.
+          Ven a conocernos, o contáctanos por los medios que prefieras.
+          ¡Siempre hay un experto listo para ayudarte!
+        </p>
+        <div class="contact-details">
+          <div class="contact-item">
+            <div class="icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+            </div>
+            <span>Calle Benito Juarez Manzana 050 Mz 1 LT 1, Lomas de Totolco, 56337 Chimalhuacán, Méx.</span>
+          </div>
+          <div class="contact-item">
+            <div class="icon">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 11.1 19.79 19.79 0 0 1 1.61 2.5 2 2 0 0 1 3.6.32h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 7.91a16 16 0 0 0 6.07 6.07l.91-.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+              </svg>
+            </div>
+            <span>(612) 123-4567</span>
+          </div>
+          <div class="contact-item">
+            <div class="icon">
+              <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+            </div>
+            <span>Lun &ndash; Sáb: 8:00 am &ndash; 7:00 pm</span>
+          </div>
+          <div class="contact-item">
+            <div class="icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
+              </svg>
+            </div>
+            <span>contacto@tlapemerald.com.mx</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mapa Tlapalería Esmeralda — Chimalhuacán, Méx. -->
+      <div class="map-wrap">
+        <iframe title="Ubicación Tlapalería Esmeralda"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.5!2d-98.9475654!3d19.3997488!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1e3ca6bb86f51%3A0x80219bae64540f3!2sTlapaleria%20Esmeralda!5e0!3m2!1ses!2smx!4v1700000000000!5m2!1ses!2smx"
+          allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-brand" style="margin-bottom:.6rem">
+          <img class="brand-logo" src="logo.png" alt="Logo Tlapalería Esmeralda"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+          <div class="brand-logo-fallback" style="display:none;">
+            <svg viewBox="0 0 24 24" fill="white">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+              <polyline points="9 22 9 12 15 12 15 22" stroke="white" fill="none" stroke-width="1.5" />
+            </svg>
+          </div>
+          Tlapalería <span>Esmeralda</span>
+        </div>
+        <p>Tu aliado en herramientas y materiales de construcción en Los Reyes La Paz. Calidad profesional a tu alcance
+          desde
+          2004.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#catalogo">Catálogo</a></li>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Categorías</h4>
+        <ul>
+          <li><a href="#catalogo">Construcción</a></li>
+          <li><a href="#catalogo">Electricidad</a></li>
+          <li><a href="#catalogo">Fontanería</a></li>
+          <li><a href="#catalogo">Herramientas manuales</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2025 Tlapalería Esmeralda &middot;Lomas de Totolco, 56337 Chimalhuacán, Méx.</span>
+      <!-- Enlace al panel de administración discreto al final de la página -->
+      <a href="admin.html">Panel de Administración</a>
+    </div>
+  </footer>
+
+  <!-- ========== CARRITO SIDEBAR ========== -->
+  <div class="cart-overlay" id="cart-overlay"></div>
+  <aside class="cart-sidebar" id="cart-sidebar">
+    <div class="cart-header">
+      <h2>
+        <svg viewBox="0 0 24 24">
+          <circle cx="9" cy="21" r="1" />
+          <circle cx="20" cy="21" r="1" />
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+        </svg>
+        Tu Carrito
+      </h2>
+      <button class="btn-close-cart" id="btn-close-cart" aria-label="Cerrar carrito">&#x2715;</button>
+    </div>
+    <div class="cart-items" id="cart-items"></div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total</span>
+        <strong id="cart-total">$0</strong>
+      </div>
+      <button class="btn-checkout" id="btn-checkout">
+        <svg viewBox="0 0 24 24">
+          <polyline points="20 12 20 22 4 22 4 12" />
+          <rect x="2" y="7" width="20" height="5" />
+          <line x1="12" y1="22" x2="12" y2="7" />
+          <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z" />
+          <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z" />
+        </svg>
+        Proceder al pedido
+      </button>
+    </div>
+  </aside>
+
+  <!-- ========== MODAL PRODUCTO ========== -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-header">
+        <button class="btn-close-modal" id="btn-close-modal" aria-label="Cerrar modal">&#x2715;</button>
+      </div>
+      <div class="modal-content" id="modal-dyn">
+        <!-- Renderizado por JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== MODAL DE CHECKOUT (simulación de pedido) ========== -->
+  <div class="checkout-overlay" id="checkout-overlay">
+    <div class="checkout-box" id="checkout-box">
+      <!-- El contenido se inyecta desde JS -->
+    </div>
+  </div>
+
+  <!-- ========== BOTÓN CHAT FLOTANTE ========== -->
+  <button class="btn-chat-float" id="btn-chat-float" aria-label="Chat en vivo" title="Chat en vivo">
+    <svg viewBox="0 0 24 24">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+    </svg>
+    <span class="chat-tooltip">¿Necesitas ayuda?</span>
+  </button>
+
+  <!-- ========== TOAST CONTAINER ========== -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="js/db.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>
