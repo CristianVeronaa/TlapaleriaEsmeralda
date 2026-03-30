@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
+
+<!-- Panel de administración de Tlapalería Esmeralda.
+     Incluye acceso de administrador, panel de estadísticas, gestión de productos,
+     edición de inventario y administración de pedidos. -->
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -322,6 +327,8 @@
 <body>
 
   <!-- LOGIN -->
+  <!-- Pantalla de acceso privado para el administrador.
+       Valida usuario y contraseña antes de mostrar el panel. -->
   <div id="login-screen">
     <div class="login-box">
       <div class="login-icon">
@@ -337,6 +344,8 @@
   </div>
 
   <!-- ADMIN APP -->
+  <!-- Contenedor principal del panel de administración.
+       Se muestra sólo después de iniciar sesión correctamente. -->
   <div id="admin-app">
     <header class="admin-header">
       <div class="admin-brand">
@@ -439,6 +448,7 @@
   <!-- TOASTS -->
   <div class="toast-container" id="toast-container"></div>
 
+  <!-- Carga la base de datos simulada antes del controlador del panel -->
   <script src="js/db.js"></script>
   <script>
     /* --- CONSTANTES --- */

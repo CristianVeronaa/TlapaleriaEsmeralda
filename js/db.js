@@ -5,6 +5,8 @@
 
 const DB_KEY = 'esmeralda_productos';
 
+// Datos iniciales de ejemplo que se cargan en localStorage la primera vez
+// que se abre la aplicación. Representan productos de la tlapalería.
 const PRODUCTOS_INICIALES = [
   {
     id: 1,
@@ -50,6 +52,7 @@ const PRODUCTOS_INICIALES = [
 
 const DB_INIT_FLAG = 'esmeralda_inicializado';
 
+// Objeto DB: gestiona lectura, escritura y consulta de productos en localStorage.
 const DB = {
   init() {
     // Solo cargar productos iniciales la PRIMERA vez que se abre la app.
@@ -104,6 +107,7 @@ const DB = {
     localStorage.setItem(DB_KEY, JSON.stringify(PRODUCTOS_INICIALES));
   },
 
+  // Aplica los filtros seleccionados y la búsqueda de texto al catálogo de productos.
   filter({ categoria, marca, precioMax, query }) {
     let productos = this.getAll();
     if (categoria && categoria !== 'todos') {
@@ -139,7 +143,9 @@ const DB = {
 // Carro de Compras
 const CART_KEY = 'esmeralda_carrito';
 
+// Objeto Cart: gestiona el carrito de compras en localStorage.
 const Cart = {
+  // Devuelve el contenido actual del carrito desde localStorage.
   get() {
     return JSON.parse(localStorage.getItem(CART_KEY)) || [];
   },
@@ -180,6 +186,7 @@ const Cart = {
 // ── Pedidos (Orders) ──────────────────────────────────────
 const ORDERS_KEY = 'esmeralda_pedidos';
 
+// Objeto Orders: gestiona el historial de pedidos guardados en localStorage.
 const Orders = {
   getAll() {
     return JSON.parse(localStorage.getItem(ORDERS_KEY)) || [];

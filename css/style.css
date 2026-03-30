@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
 
 /* === VARIABLES — TEMA CLARO PROFESIONAL === */
+/* Definición de colores, tipografía, radios y sombras que se usan en todo el diseño. */
 :root {
   --bg-primary: #f7f8fb;
   --bg-secondary: #ffffff;
@@ -27,6 +28,7 @@
 }
 
 /* === RESET & BASE === */
+/* Estilos base universales para normalizar margen, padding y caja de contenido. */
 *,
 *::before,
 *::after {
@@ -89,6 +91,7 @@ button {
 /* ========================================
    NAVBAR
 ======================================== */
+/* Estilos del encabezado fijo, enlaces de navegación y botón de carrito. */
 .navbar {
   position: fixed;
   top: 0;

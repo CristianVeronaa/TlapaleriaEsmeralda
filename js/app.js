@@ -66,6 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ── Barra de búsqueda / Autocompletado ───────────────────
+  // Captura la búsqueda del usuario y actualiza las sugerencias y el listado.
   searchInput.addEventListener('input', () => {
     const q = searchInput.value.trim();
     renderProducts();
@@ -87,6 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
     autocompleteList.classList.toggle('visible', suggestions.length > 0);
   });
 
+  // Selecciona una sugerencia del autocompletado y carga ese producto en la búsqueda.
   autocompleteList.addEventListener('click', (e) => {
     const item = e.target.closest('.autocomplete-item');
     if (!item) return;
@@ -96,6 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderProducts();
   });
 
+  // Cierra el desplegable de autocompletado cuando el usuario hace clic fuera del buscador.
   document.addEventListener('click', (e) => {
     if (!e.target.closest('.search-wrapper')) {
       autocompleteList.classList.remove('visible');
@@ -104,11 +107,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ── Renderizar Productos ──────────────────────────────────
   function renderProducts() {
+    // Recoge los valores actuales de búsqueda y filtros seleccionados.
     const query      = searchInput.value.trim();
     const categoria  = filterCategoria.value;
     const marca      = filterMarca.value;
     const precioMax  = Number(filterPrecio.value);
 
+    // Llama al método de filtrado de la base de datos y muestra los productos resultantes.
     const productos = DB.filter({ categoria, marca, precioMax, query });
     populateGrid(productos);
   }
@@ -116,8 +121,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const cartIconSVG = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>`;
 
   function populateGrid(productos) {
+    // Si no existe el contenedor donde se debe dibujar el catálogo, terminamos.
     if (!productsGrid) return;
 
+    // Si no hay resultados, mostrar estado vacío con mensaje al usuario.
     if (productos.length === 0) {
       productsGrid.innerHTML = `
         <div class="empty-state">
@@ -164,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    // Botones añadir al carrito
+    // Botones para agregar productos directamente al carrito desde la tarjeta.
     productsGrid.querySelectorAll('.btn-cart-action').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -175,6 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ── Carrito ───────────────────────────────────────────────
   function updateCartUI() {
+    // Actualiza el indicador de cantidad en el carrito y muestra el contenido.
     const count = Cart.count();
     cartBadge.textContent = count;
     cartBadge.classList.toggle('visible', count > 0);
@@ -202,6 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       cartItemsEl.querySelectorAll('.btn-remove-item').forEach(btn => {
         btn.addEventListener('click', () => {
+          // Elimina el producto seleccionado y vuelve a renderizar la vista del carrito.
           Cart.remove(Number(btn.dataset.id));
           updateCartUI();
         });
@@ -212,11 +221,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function addToCart(id) {
+    // Agrega un producto al carrito y actualiza la vista del carrito.
     Cart.add(id);
     updateCartUI();
     showToast('Producto añadido al carrito');
   }
 
+  // Abre el panel lateral del carrito cuando el usuario hace clic en el botón del carrito.
   btnCart.addEventListener('click', () => {
     cartOverlay.classList.add('open');
     cartSidebar.classList.add('open');
@@ -247,6 +258,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function openCheckoutModal() {
+    // Construye el modal de checkout con los productos en el carrito y un formulario de envío.
     const carrito = Cart.get();
     const total   = Cart.total();
 
@@ -343,6 +355,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const colonia  = document.getElementById('co-colonia').value.trim();
       const cp       = document.getElementById('co-cp').value.trim();
 
+      // Validación básica de los campos obligatorios antes de guardar el pedido.
       if (!nombre || !telefono || !calle || !colonia) {
         showToast('Por favor completa los campos requeridos');
         return;
@@ -415,6 +428,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ── Modal de producto ─────────────────────────────────────
   function openModal(id) {
+    // Abre el modal de detalle de producto usando la información del producto seleccionado.
     const p = DB.getById(id);
     if (!p) return;
     const addCartSVG = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>`;
